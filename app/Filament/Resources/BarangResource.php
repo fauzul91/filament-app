@@ -20,14 +20,28 @@ class BarangResource extends Resource
     protected static ?string $model = Barang::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationLabel = 'Kelola Barang';
+    protected static ?string $slug = 'kelola-barang';
+    protected static ?string $label = 'Kelola Barang';
+
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('nama_barang'),
-                TextInput::make('kode_barang'),
+                TextInput::make('nama_barang')
+                    ->required()
+                    ->label('Nama Barang')
+                    ->placeholder('Masukkan Nama Barang'),
+                TextInput::make('kode_barang')
+                    ->required()
+                    ->label('Kode Barang')
+                    ->placeholder('Masukkan Nama Barang'),
                 TextInput::make('harga_barang')
+                    ->required()
+                    ->numeric()
+                    ->label('Harga Barang')
+                    ->placeholder('Masukkan Nama Barang'),
             ]);
     }
 
@@ -35,9 +49,16 @@ class BarangResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nama_barang'),
-                TextColumn::make('kode_barang'),
+                TextColumn::make('nama_barang')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Nama'),
+                TextColumn::make('kode_barang')
+                    ->copyable()
+                    ->copyMessage('Berhasil Menyalin!')
+                    ->label('Kode'),
                 TextColumn::make('harga_barang')
+                    ->label('Harga'),
             ])
             ->filters([
                 //

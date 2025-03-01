@@ -56,7 +56,8 @@ class CustomerResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nama_customer')
-                    ->label('Nama'),
+                    ->label('Nama')
+                    ->sortable(),
                 TextColumn::make('kode_customer')
                     ->label('Kode'),
                 TextColumn::make('alamat_customer')

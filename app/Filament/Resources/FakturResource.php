@@ -21,7 +21,10 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class FakturResource extends Resource
 {
     protected static ?string $model = FakturModel::class;
-
+    protected static ?string $navigationLabel = 'Kelola Faktur';
+    protected static ?string $slug = 'kelola-faktur';
+    protected static ?string $navigationGroup = 'Operasional';
+    protected static ?string $label = 'Kelola Faktur';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -48,7 +51,7 @@ class FakturResource extends Resource
                 TextColumn::make('kode_faktur'),
                 TextColumn::make('tanggal_faktur'),
                 TextColumn::make('kode_customer'),
-                TextColumn::make('customer_id'),
+                TextColumn::make('customer.nama_customer'),
                 TextColumn::make('ket_faktur'),
                 TextColumn::make('total'),
                 TextColumn::make('nominal_charge'),
